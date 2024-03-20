@@ -1,0 +1,45 @@
+name: navidrome
+on:
+  workflow_dispatch:
+env:
+  NAVIDROME_VERSION: 0.51.1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Login to github Container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_TOKEN }}
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v5.0.0
+      with:
+        images: |
+          itodouble/navidrome
+          ghcr.io/itodouble/navidrome
+        tags: |
+          latest
+          ${{ env.NAVIDROME_VERSION }}
+    - name: Build and push
+      uses: docker/build-push-action@v5.1.0
+      env:
+        NAVIDROME_VERSION: ${{ env.NAVIDROME_VERSION }}
+      with:
+        build-args: NAVIDROME_VERSION=${{ env.NAVIDROME_VERSION }}
+        file: .github/workflows/files/navidrome/Dockerfile
+        push: true
+        platforms: |
+          linux/amd64
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        
