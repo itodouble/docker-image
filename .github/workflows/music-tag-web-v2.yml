@@ -1,0 +1,36 @@
+name: music-tag-web-v2
+
+on:
+  workflow_dispatch:
+env:
+  MUSIC_TAG_VERSION: 2.0.1
+  NEW_TAG: preview,2,2.0.1,2.0.1-20240320,2-20240320
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: itodouble
+          password: ${{ secrets.DOCKERHUB_TOKEN  }}
+
+      - name: Pull original image
+        run: docker pull xhongc/music_tag_web:${{ env.MUSIC_TAG_VERSION }}
+
+      - name: Tag image
+        run: |
+          IFS=',' read -ra TAGS <<< "${{ env.NEW_TAG }}"
+          for tag in "${TAGS[@]}"; do
+            docker tag xhongc/music_tag_web:${{ env.MUSIC_TAG_VERSION }} itodouble/music-tag-web:${tag}
+          done
+      - name: Push image
+        run: |
+          IFS=',' read -ra TAGS <<< "${NEW_TAG}"
+          for tag in "${TAGS[@]}"; do
+            docker push itodouble/music-tag-web:${tag}
+          done
