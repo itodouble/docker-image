@@ -1,41 +1,11 @@
 # docker-image
 镜像重新打标签、更符合自己的使用习惯
 
-## halo
-https://github.com/halo-dev/halo
-https://hub.docker.com/r/halohub/halo
--- 
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/itodouble/frp?sort=semver)
-```
-docker pull itodouble/halo
-```
-https://hub.docker.com/r/itodouble/halo
 
-## music-tag-web
-https://github.com/xhongc/music-tag-web
-https://hub.docker.com/r/xhongc/music_tag_web
---
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/itodouble/music-tag-web?sort=semver)
-```
-docker pull itodouble/music-tag-web
-```
-https://hub.docker.com/r/itodouble/music-tag-web
+| app          | repo                                                                                                             | repo new                                                                                    |
+| ---          | ---                                                                                                              | ---                                                                                         |
+| halo         | https://github.com/halo-dev/halo ![version](https://img.shields.io/github/v/release/halo-dev/halo)               | itodouble/halo ![version](https://img.shields.io/docker/v/itodouble/frp)                    | 
+| music-tag-web| https://github.com/xhongc/music-tag-web ![version](https://img.shields.io/github/v/release/xhongc/music-tag-web) | itodouble/music-tag-web ![version](https://img.shields.io/docker/v/itodouble/music-tag-web) |
+| homarr       | https://github.com/ajnart/homarr ![version](https://img.shields.io/github/v/release/ajnart/homarr)               | itodouble/homarr ![version](https://img.shields.io/docker/v/itodouble/homarr)               |
+| navidrome    | https://github.com/navidrome/navidrome ![version](https://img.shields.io/github/v/release/navidrome/navidrome)   | itodouble/navidrome ![version](https://img.shields.io/docker/v/itodouble/navidrome)         |
 
-## homarr
-https://github.com/ajnart/homarr
-ghcr.io/ajnart/homarr
---
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/itodouble/homarr?sort=semver)
-```
-docker pull itodouble/homarr
-```
-https://hub.docker.com/r/itodouble/homarr
-
-## navidrome
-https://github.com/navidrome/navidrome
---
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/itodouble/navidrome?sort=semver)
-```
-docker pull itodouble/navidrome
-```
-https://hub.docker.com/r/itodouble/navidrome
