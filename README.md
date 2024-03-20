@@ -24,8 +24,7 @@ https://hub.docker.com/r/itodouble/music-tag-web
 ## homarr
 https://github.com/ajnart/homarr
 ghcr.io/ajnart/homarr
-
--- 
+--
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/itodouble/homarr?sort=semver)
 ```
 docker pull itodouble/homarr
@@ -34,7 +33,6 @@ https://hub.docker.com/r/itodouble/homarr
 
 ## navidrome
 https://github.com/navidrome/navidrome
-https://hub.docker.com/r/itodouble/navidrome
 --
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/itodouble/navidrome?sort=semver)
 ```
