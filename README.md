@@ -5,7 +5,7 @@
 
 | github      | docker image   |
 | ----------- | :-----------   |
-| https://github.com/halo-dev/halo![version](https://img.shields.io/github/v/release/halo-dev/halo?sort=semver) | halohub/halo![version](https://img.shields.io/docker/v/halohub/halo?sort=semver) |
+| https://github.com/halo-dev/halo ![version](https://img.shields.io/github/v/release/halo-dev/halo?sort=semver) | halohub/halo![version](https://img.shields.io/docker/v/halohub/halo?sort=semver) |
 | - | itodouble/halo![version](https://img.shields.io/docker/v/itodouble/halo?sort=semver) |
 
 #### music-tag-web
