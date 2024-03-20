@@ -1,0 +1,47 @@
+name: frp
+
+on:
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: 生成Dockerfile文件
+      run: |
+        chmod +x check_version.sh
+        .github/workflows/frp/check_version.sh
+    - name: check dockerfile
+      id: dockerfile_check
+      uses: andstor/file-existence-action@v2.0.0
+      with:
+         files: "Dockerfile"
+    - name: 输出结果
+      run: |
+        echo ${{ steps.dockerfile_check.outputs }}
+    - name: 如果没有生成dockerfile提前结束工作流
+      id: check_stop_flow
+      if: ${{ steps.dockerfile_check.outputs.files_exists == 'false' }}
+      run: |
+        core.setFailed("当前版本已经存在 不生成新的")
+    - name: Substitute version
+      id: get_frp_version
+      run: |
+        echo "frp_version=$(cat version.file)" >> $GITHUB_ENV
+    - name: Login to Docker hub
+      uses: docker/login-action@v2
+      with:
+        username: itodouble
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      env:
+        FRP_VERSION: ${{ env.frp_version }}
+      with:
+        context: .github/workflows/frp/Dockerfile
+        platforms: linux/amd64
+        push: true
+        tags: |
+          itodouble/frp:latest
+          itodouble/frp:${{ env.FRP_VERSION }}
