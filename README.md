@@ -20,3 +20,14 @@ https://hub.docker.com/r/xhongc/music_tag_web
 docker pull itodouble/music-tag-web
 ```
 https://hub.docker.com/r/itodouble/music-tag-web
+
+## homarr
+https://github.com/ajnart/homarr
+ghcr.io/ajnart/homarr
+
+-- 
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/itodouble/homarr?sort=semver)
+```
+docker pull itodouble/homarr
+```
+https://hub.docker.com/r/itodouble/homarr
