@@ -27,3 +27,9 @@
 | https://github.com/navidrome/navidrome ![version](https://img.shields.io/github/v/release/navidrome/navidrome?sort=semver) | deluan/navidrome![version](https://img.shields.io/docker/v/deluan/navidrome?sort=semver) |
 | - | itodouble/navidrome![version](https://img.shields.io/docker/v/itodouble/navidrome?sort=semver) |
  
+#### frp
+| github      | docker image   |
+| ----------- | :-----------   |
+| https://github.com/fatedier/frp ![version](https://img.shields.io/github/v/release/fatedier/frp?sort=semver) | - |
+| - | itodouble/frp![version](https://img.shields.io/docker/v/itodouble/frp?sort=semver) |
+ 
