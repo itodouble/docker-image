@@ -39,7 +39,7 @@ jobs:
       env:
         FRP_VERSION: ${{ env.frp_version }}
       with:
-        context: .github/workflows/frp/Dockerfile
+        context: ./Dockerfile
         platforms: linux/amd64
         push: true
         tags: |
