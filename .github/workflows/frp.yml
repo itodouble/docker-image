@@ -1,47 +1,45 @@
 name: frp
-
 on:
   workflow_dispatch:
+env:
+  FRP_VERSION: 0.56.0
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: 生成Dockerfile文件
-      run: |
-        chmod +x .github/workflows/files/frp/check_version.sh
-        .github/workflows/files/frp/check_version.sh
-    - name: check dockerfile
-      id: dockerfile_check
-      uses: andstor/file-existence-action@v2.0.0
-      with:
-         files: "Dockerfile"
-    - name: 输出结果
-      run: |
-        echo ${{ steps.dockerfile_check.outputs }}
-    - name: 如果没有生成dockerfile提前结束工作流
-      id: check_stop_flow
-      if: ${{ steps.dockerfile_check.outputs.files_exists == 'false' }}
-      run: |
-        core.setFailed("当前版本已经存在 不生成新的")
-    - name: Substitute version
-      id: get_frp_version
-      run: |
-        echo "frp_version=$(cat version.file)" >> $GITHUB_ENV
-    - name: Login to Docker hub
+    - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: itodouble
+        username: ${{ github.actor }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build and push
-      uses: docker/build-push-action@v3
-      env:
-        FRP_VERSION: ${{ env.frp_version }}
+    - name: Login to github Container registry
+      uses: docker/login-action@v2
       with:
-        context: ./Dockerfile
-        platforms: linux/amd64
-        push: true
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_TOKEN }}
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v5.0.0
+      with:
+        images: |
+          itodouble/frp
+          ghcr.io/itodouble/frp
         tags: |
-          itodouble/frp:latest
-          itodouble/frp:${{ env.FRP_VERSION }}
+          latest
+          ${{ env.FRP_VERSION }}
+    - name: Build and push
+      uses: docker/build-push-action@v5.1.0
+      env:
+        NAVIDROME_VERSION: ${{ env.FRP_VERSION }}
+      with:
+        build-args: FRP_VERSION=${{ env.FRP_VERSION }}
+        file: .github/workflows/files/frp/Dockerfile
+        push: true
+        platforms: |
+          linux/amd64
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        
