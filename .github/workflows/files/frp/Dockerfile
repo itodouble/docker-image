@@ -12,4 +12,4 @@ ENV ARGS frps
 ENV CONFIG_FILE frps.toml
 ENV TZ Asia/Shanghai
 
-CMD /frp/\${ARGS} -c /config/\${CONFIG_FILE}
+CMD /frp/${ARGS} -c /config/${CONFIG_FILE}
