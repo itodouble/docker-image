@@ -30,7 +30,8 @@ jobs:
         with:
           pull: true
           registry: docker.io
-          image: halohub/halo:${{ env.HALO_VERSION }}
+          image: halohub/halo
+          tags: ${{ env.HALO_VERSION }}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5.0.0
