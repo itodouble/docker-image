@@ -25,15 +25,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: Pull original image
-        run: docker pull halohub/halo:${{ env.HALO_VERSION }}
+      - name: Pull image
+        uses: docker/build-push-action@v3
+        with:
+          pull: true
+          registry: docker.io
+          image: halohub/halo:${{ env.HALO_VERSION }}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5.0.0
         with:
-          images: |
-            itodouble/halo
-            ghcr.io/itodouble/halo
           tags: ${{ env.NEW_TAG }}
       - name: Push to GHCR
         uses: docker/build-push-action@v3
@@ -42,6 +43,7 @@ jobs:
           platforms: |
             linux/amd64
           registry: ghcr.io
+          image: itodouble/halo
           tags: ${{ steps.meta.outputs.tags }}
       - name: Push to Docker Hub
         uses: docker/build-push-action@v3
@@ -50,4 +52,5 @@ jobs:
           platforms: |
             linux/amd64
           registry: docker.io
+          image: itodouble/halo
           tags: ${{ steps.meta.outputs.tags }}
