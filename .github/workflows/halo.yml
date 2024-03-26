@@ -31,6 +31,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5.0.0
         with:
+          images: itodouble/halo
           tags: ${{ env.NEW_TAG }}
       - name: Push to GHCR
         uses: docker/build-push-action@v3
