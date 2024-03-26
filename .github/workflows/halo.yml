@@ -35,11 +35,6 @@ jobs:
             itodouble/halo
             ghcr.io/itodouble/halo
           tags: ${{ env.NEW_TAG }}
-      - name: re tag
-        run: |
-          for tag in ${{ steps.meta.outputs.tags }}; do
-            docker tag halohub/halo:${{ env.HALO_VERSION }} itodouble/halo:${tag}
-          done
       - name: Push to GHCR
         uses: docker/build-push-action@v3
         with:
