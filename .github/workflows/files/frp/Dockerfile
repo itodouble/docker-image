@@ -5,8 +5,8 @@ ARG FRP_VERSION=${FRP_VERSION}
 RUN apk add --update
 RUN echo "Target version = ${FRP_VERSION}"
 ADD https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz /frp.tar.gz
-RUN mkdir /frp
-RUN tar -xzvf /frp.tar.gz -C /frp/
+RUN mkdir /frp_app
+RUN tar -xzvf /frp.tar.gz -C /frp_app/
 
 VOLUME /config
 
