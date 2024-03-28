@@ -3,8 +3,8 @@ name: music-tag-web-v2
 on:
   workflow_dispatch:
 env:
-  MUSIC_TAG_VERSION: 2.0.3
-  NEW_TAG: latest,2,2.0.3,2.0.3-20240325,2-20240325
+  MUSIC_TAG_VERSION: 2.0.4
+  NEW_TAG: latest,2,2.0.4,2.0.4-20240327,2-20240327
 jobs:
   build:
     runs-on: ubuntu-latest
