@@ -3,8 +3,8 @@ name: homarr
 on:
   workflow_dispatch:
 env:
-  HOMARR_VERSION: 0.15.2
-  NEW_TAG: latest,0.15.2
+  HOMARR_VERSION: 0.15.3
+  NEW_TAG: latest,0.15.3,20240520
 jobs:
   build:
     runs-on: ubuntu-latest
