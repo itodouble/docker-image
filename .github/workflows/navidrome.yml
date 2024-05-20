@@ -2,7 +2,7 @@ name: navidrome
 on:
   workflow_dispatch:
 env:
-  NAVIDROME_VERSION: 0.52.0
+  NAVIDROME_VERSION: 0.52.5
 
 jobs:
   build:
