@@ -3,8 +3,8 @@ name: halo
 on:
   workflow_dispatch:
 env:
-  HALO_VERSION: 2.19.3
-  NEW_TAG: latest,2,2.19,2.19.3
+  HALO_VERSION: 2.20.5
+  NEW_TAG: latest,2,2.20,2.20.5
 jobs:
   build:
     runs-on: ubuntu-latest
