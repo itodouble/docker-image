@@ -26,11 +26,11 @@ jobs:
         run: |
           IFS=',' read -ra TAGS <<< "${{ env.NEW_TAG }}"
           for tag in "${TAGS[@]}"; do
-            docker tag ghcr.io/sarperavci/cloudflarebypassforscraping:${{ env.IMAGE_VERSION }} itodouble/CloudflareBypassForScraping:${tag}
+            docker tag ghcr.io/sarperavci/cloudflarebypassforscraping:${{ env.IMAGE_VERSION }} itodouble/cloudflarebypassforscraping:${tag}
           done
       - name: Push image
         run: |
           IFS=',' read -ra TAGS <<< "${NEW_TAG}"
           for tag in "${TAGS[@]}"; do
-            docker push itodouble/CloudflareBypassForScraping:${tag}
+            docker push itodouble/cloudflarebypassforscraping:${tag}
           done
