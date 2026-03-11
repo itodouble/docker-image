@@ -20,13 +20,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN  }}
 
       - name: Pull original image
-        run: docker pull ghcr.io/sarperavci/CloudflareBypassForScraping:${{ env.IMAGE_VERSION }}
+        run: docker pull ghcr.io/sarperavci/cloudflarebypassforscraping:${{ env.IMAGE_VERSION }}
 
       - name: Tag image
         run: |
           IFS=',' read -ra TAGS <<< "${{ env.NEW_TAG }}"
           for tag in "${TAGS[@]}"; do
-            docker tag ghcr.io/sarperavci/CloudflareBypassForScraping:${{ env.IMAGE_VERSION }} itodouble/CloudflareBypassForScraping:${tag}
+            docker tag ghcr.io/sarperavci/cloudflarebypassforscraping:${{ env.IMAGE_VERSION }} itodouble/CloudflareBypassForScraping:${tag}
           done
       - name: Push image
         run: |
