@@ -1,0 +1,36 @@
+name: CloudflareBypassForScraping
+
+on:
+  workflow_dispatch:
+env:
+  IMAGE_VERSION: 0.16.0
+  NEW_TAG: latest,20260109
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: itodouble
+          password: ${{ secrets.DOCKERHUB_TOKEN  }}
+
+      - name: Pull original image
+        run: docker pull ghcr.io/sarperavci/CloudflareBypassForScraping:${{ env.IMAGE_VERSION }}
+
+      - name: Tag image
+        run: |
+          IFS=',' read -ra TAGS <<< "${{ env.NEW_TAG }}"
+          for tag in "${TAGS[@]}"; do
+            docker tag ghcr.io/sarperavci/CloudflareBypassForScraping:${{ env.IMAGE_VERSION }} itodouble/CloudflareBypassForScraping:${tag}
+          done
+      - name: Push image
+        run: |
+          IFS=',' read -ra TAGS <<< "${NEW_TAG}"
+          for tag in "${TAGS[@]}"; do
+            docker push itodouble/CloudflareBypassForScraping:${tag}
+          done
