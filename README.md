@@ -23,3 +23,10 @@
 | https://github.com/fatedier/frp ![version](https://img.shields.io/github/v/release/fatedier/frp?sort=semver) | - |
 | - | itodouble/frp![version](https://img.shields.io/docker/v/itodouble/frp?sort=semver) |
  
+
+#### CloudflareBypassForScraping
+| github      | docker image   |
+| ----------- | :-----------   |
+| https://github.com/fatedier/CloudflareBypassForScraping ![version](https://img.shields.io/github/v/release/sarperavci/CloudflareBypassForScraping?sort=semver) | - |
+| - | itodouble/CloudflareBypassForScraping![version](https://img.shields.io/docker/v/itodouble/CloudflareBypassForScraping?sort=semver) |
+ 
