@@ -2,7 +2,7 @@ name: frp
 on:
   workflow_dispatch:
 env:
-  FRP_VERSION: 0.70.1
+  FRP_VERSION: 0.71.0
 
 jobs:
   build:
